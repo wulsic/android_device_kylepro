@@ -1,0 +1,3 @@
+on init
+    mkdir /efs
+    mkdir /preload
