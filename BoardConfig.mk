@@ -23,8 +23,8 @@ BOARD_KERNEL_CMDLINE :=
 BOARD_KERNEL_BASE := 0x82000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_OFFSET := 0x00008000
-# https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.6
+# https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.7
+#TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.7
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 TARGET_KERNEL_CONFIG := bcm21664_hawaii_ss_kylepro_rev00_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/kylepro/
