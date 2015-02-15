@@ -30,7 +30,7 @@ on init
     mkdir /mnt/media_rw/usbdisk0 0700 media_rw media_rw
     mkdir /storage/usbdisk0 0700 root root
 
-    # for backwards compatibility
+# map "real" external storages paths also in same way. backwards compatibility.
     #symlink /storage/sdcard1 /external_sd
     #symlink /storage/sdcard1 /mnt/external_sd
     #symlink /storage/usbdisk /usbdisk
@@ -507,6 +507,15 @@ service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
     class late_start
     oneshot
 
+# fusewrapped external sdcard daemon running as media_rw (1023)
+	service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+		class late_start
+		disabled
+
+#  usbdisk0 sdcard daemon running as media_rw (1023)	
+	service fuse_usbdisk0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk0 /storage/usbdisk0
+		class late_start
+		disabled
 
 #	-iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -N \
 service p2p_supplicant /system/bin/p2p_supplicant \
