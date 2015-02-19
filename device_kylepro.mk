@@ -15,14 +15,14 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/kylepro/overlay
 # Init files
 PRODUCT_COPY_FILES += \
 	device/samsung/kylepro/ramdisk/fstab.hawaii_ss_kylepro:root/fstab.hawaii_ss_kylepro \
-#	device/samsung/kylepro/ramdisk/init.rc:root/init.rc \
 	device/samsung/kylepro/ramdisk/init.hawaii_ss_kylepro.rc:root/init.hawaii_ss_kylepro.rc \
 	device/samsung/kylepro/ramdisk/init.bcm2166x.usb.rc:root/init.bcm2166x.usb.rc \
 	device/samsung/kylepro/ramdisk/init.log.rc:root/init.log.rc \
 	device/samsung/kylepro/ramdisk/lpm.rc:root/lpm.rc \
 	device/samsung/kylepro/ramdisk/init.bt.rc:root/init.bt.rc \
 	device/samsung/kylepro/ramdisk/ueventd.hawaii_ss_kylepro.rc:root/ueventd.hawaii_ss_kylepro.rc \
-	device/samsung/kylepro/ramdisk/recovery/init.recovery.hawaii_ss_kylepro.rc:root/init.recovery.hawaii_ss_kylepro.rc
+	device/samsung/kylepro/ramdisk/recovery/init.recovery.hawaii_ss_kylepro.rc:root/init.recovery.hawaii_ss_kylepro.rc \
+	device/samsung/kylepro/ramdisk/init.rc:root/init.rc
 
 PRODUCT_COPY_FILES += \
 	device/samsung/kylepro/configs/media_profiles.xml:system/etc/media_profiles.xml \
