@@ -6,6 +6,6 @@ Must be placed at [Cyanogenmod11Source]/device/samsung/kylepro/
 
 You need to applied this patch before build
 
-https://gist.github.com/pawitp/7891444
+https://gist.github.com/SandPox/ff44369f0b348388e128
 
 Thanks Zim555.
