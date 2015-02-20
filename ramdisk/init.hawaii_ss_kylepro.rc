@@ -358,6 +358,11 @@ on boot
 #    chown system system /sys/class/gpio/gpio56/direction
 #    write /sys/class/gpio/gpio56/value 0
 #    write /sys/class/gpio/gpio56/direction out
+
+# serial_no permission change
+    touch /efs/FactoryApp/serial_no
+    chmod 0770 /efs/FactoryApp/serial_no
+    chown system system /efs/FactoryApp/serial_no
     
 on fs
     mount_all /fstab.hawaii_ss_kylepro
@@ -563,23 +568,34 @@ service iprenew_p2p /system/bin/dhcpcd -n
     class main
     disabled
     oneshot
+    
+# Bluetooth PAN
+service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
+	class main
+	disabled
+	oneshot
+
+service iprenew_bt-pan /system/bin/dhcpcd -n
+	class main
+	disabled
+	oneshot    
 	
 # Permissions for Camera
          chmod 220 /sys/class/camera/rear/rear_camfw
          chmod 220 /sys/class/camera/rear/rear_camtype
 # When the default SIM for data connections is updated,
 # also update the DUN AT channel with the default SIM.
-on property:persist.sys.dataprefer.simid=0
-     write /data/atx/setsim.txt at*msetsim=1
-     chmod 0666 /data/atx/setsim.txt
-     start set_simid
+#on property:persist.sys.dataprefer.simid=0
+#     write /data/atx/setsim.txt at*msetsim=1
+#     chmod 0666 /data/atx/setsim.txt
+#     start set_simid
 
 # When the default SIM for data connections is updated,
 # also update the DUN AT channel with the default SIM.
-on property:persist.sys.dataprefer.simid=1
-     write /data/atx/setsim.txt at*msetsim=2
-     chmod 0666 /data/atx/setsim.txt
-     start set_simid
+#on property:persist.sys.dataprefer.simid=1
+#     write /data/atx/setsim.txt at*msetsim=2
+#     chmod 0666 /data/atx/setsim.txt
+#     start set_simid
 
 #btld is only used for FM
 # Make sure we startup btld before hcid
@@ -650,11 +666,11 @@ service usb_portd /system/bin/usb_portd
 
 # When the default SIM for data connections is updated,
 # also update the DUN AT channel with the default SIM.
-service set_simid /system/bin/atx --fordev=ACM --runcmd=/data/atx/setsim.txt
-    disabled
-    oneshot
-    user system
-    group input vpn net_admin net_raw radio system sdcard_rw log mount
+#service set_simid /system/bin/atx --fordev=ACM --runcmd=/data/atx/setsim.txt
+#    disabled
+#    oneshot
+#    user system
+#    group input vpn net_admin net_raw radio system sdcard_rw log mount
 
 #Indicate boot complete to PM to complete PM initialization
 on property:dev.bootcomplete=1
@@ -691,38 +707,38 @@ service battery_charger /charger
     class charger
 
 # Bluetooth LE 2 wired Test
-service LE_dut_cmd_on /system/bin/bttestintf enable
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
+#service LE_dut_cmd_on /system/bin/bttestintf enable
+#    group bluetooth net_bt_admin
+#    disabled
+#    oneshot
 
-service LE_dut_cmd_off /system/bin/bttestintf disable
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
+#service LE_dut_cmd_off /system/bin/bttestintf disable
+#    group bluetooth net_bt_admin
+#    disabled
+#    oneshot
 
-service bttestdaemon /system/bin/bttestd
-    class main
-    user bluetooth
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
+#service bttestdaemon /system/bin/bttestd
+#    class main
+#    user bluetooth
+#    group bluetooth net_bt_admin
+#    disabled
+#    oneshot
 
 # Runtime Compcache
-service rtccd /system/bin/rtccd2 -a 150M
-    class core
-    user root
-    oneshot
+#service rtccd /system/bin/rtccd2 -a 150M
+#    class core
+#    user root
+#    oneshot
 
 on property:init.svc.rtccd=stopped
     write /proc/sys/vm/page-cluster 0
 
 # SA, System SW, SAMSUNG
-service bugreport /system/bin/bugmailer.sh -v
-    class main
-    disabled
-    oneshot
-    keycodes 114 115 116
+#service bugreport /system/bin/bugmailer.sh -v
+#    class main
+#    disabled
+#    oneshot
+#    keycodes 114 115 116
 
 on property:ro.dumpstate.dmesg=1
     write /proc/sys/kernel/dmesg_restrict 0
