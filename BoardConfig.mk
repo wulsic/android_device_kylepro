@@ -70,6 +70,7 @@ TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH := 480
 
 # Hardware rendering
+BOARD_USES_HWCOMPOSER := true
 USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := device/samsung/kylepro/configs/egl.cfg
 BOARD_USE_MHEAP_SCREENSHOT := true
