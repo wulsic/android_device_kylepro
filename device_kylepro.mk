@@ -63,7 +63,8 @@ PRODUCT_PACKAGES += \
 	audio.a2dp.default \
 	audio.usb.default \
 	audio.r_submix.default \
-	audio.primary.default
+	audio.primary.default \
+	audio_policy.kylepro
 
 # Device-specific packages
 PRODUCT_PACKAGES += \
