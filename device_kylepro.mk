@@ -64,7 +64,7 @@ PRODUCT_PACKAGES += \
 	audio.usb.default \
 	audio.r_submix.default \
 	audio.primary.default \
-	audio_policy.kylepro
+	audio_policy.hawaii
 
 # Device-specific packages
 PRODUCT_PACKAGES += \
@@ -112,10 +112,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     mobiledata.interfaces=rmnet0 \
     ro.telephony.ril_class=SamsungBCMRIL \
     ro.zygote.disable_gl_preload=true \
-	cm.updater.uri=http://lanserver.pp.ua/cm/ \
     persist.radio.multisim.config=none \
-	ro.telephony.call_ring.multiple=0 \
-	ro.telephony.call_ring=0
+    ro.telephony.call_ring.multiple=0 \
+    ro.telephony.call_ring=0
     
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
@@ -150,9 +149,6 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-ifeq ($(TARGET_BUILD_VARIANT),user)      
-else      
-endif
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_kylepro
