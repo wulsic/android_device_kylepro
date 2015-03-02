@@ -136,6 +136,9 @@ TARGET_RECOVERY_FSTAB := device/samsung/kylepro/cwm.fstab
 #TW_NO_REBOOT_BOOTLOADER := true
 #TARGET_RECOVERY_FSTAB := device/samsung/kylepro/twrp.fstab
 
+ifeq ($(HOST_OS),linux)
+	WITH_DEXPREOPT := true
+endif
 
 # CMHW
 BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/kylepro/cmhw/
