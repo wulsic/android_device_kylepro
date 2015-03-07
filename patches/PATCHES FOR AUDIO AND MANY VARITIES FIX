@@ -1,0 +1,5 @@
+how to patch:
+
+enter into the directory for patch for example frameworks/av  
+copy the fix.path in the source folder then open terminal type 
+"pathch -p1 < fix.patch"  without quotes
