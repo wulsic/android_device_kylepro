@@ -16,8 +16,8 @@ index e384584..5e15022 100644
  };
  
  bool HardwareEnabled() {
-+// HACK: HAWAAi_HWC has problems with GL image upload which can lead to system crash
-+#ifdef RHEA_HWC
++// HACK: HAWAII_HWC has problems with GL image upload which can lead to system crash
++#ifdef HAWAII_HWC
 +  static bool g_hw_enabled = false;
 +#else
    static bool g_hw_enabled = !CommandLine::ForCurrentProcess()->HasSwitch(

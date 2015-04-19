@@ -53,7 +53,7 @@ index 822130b..8583393 100644
 From 8a097001d151587a4d4e5205fe92b88d905281fe Mon Sep 17 00:00:00 2001
 From: Pawit Pornkitprasan <p.pawit@gmail.com>
 Date: Tue, 10 Dec 2013 19:38:42 +0700
-Subject: [PATCH 3/4] sf: add HAWAAI_HWC compatibility
+Subject: [PATCH 3/4] sf: add HAWAII_HWC compatibility
 
 Change-Id: Iaaba61dc661fcb801ea11db58d129a01105648a3
 ---
@@ -69,8 +69,8 @@ index eead7f1..7c5be2f 100644
          //getLayer()->compositionType = HWC_FRAMEBUFFER;
      }
      virtual void setPlaneAlpha(uint8_t alpha) {
-+// HAWAAI_HWC does not respect planeAlpha despite being v1.2
-+#ifndef HAWAAI_HWC
++// HAWAII_HWC does not respect planeAlpha despite being v1.2
++#ifndef HAWAII_HWC
          if (hwcHasApiVersion(mHwc, HWC_DEVICE_API_VERSION_1_2)) {
              getLayer()->planeAlpha = alpha;
          } else {
@@ -78,7 +78,7 @@ index eead7f1..7c5be2f 100644
              if (alpha < 0xFF) {
                  getLayer()->flags |= HWC_SKIP_LAYER;
              }
-+#ifndef HAWAAI_HWC
++#ifndef HAWAII_HWC
          }
 +#endif
      }
@@ -92,8 +92,8 @@ index dd66f0b..2235cd5 100644
  
  void Layer::updateTransformHint(const sp<const DisplayDevice>& hw) const {
      uint32_t orientation = 0;
-+// HAWAAI_HWC has display problem in landscape mode when transform is used
-+#ifndef HAWAAI_HWC
++// HAWAII_HWC has display problem in landscape mode when transform is used
++#ifndef HAWAII_HWC
      if (!mFlinger->mDebugDisableTransformHint) {
          // The transform hint is used to improve performance, but we can
          // only have a single transform hint, it cannot
@@ -112,7 +112,7 @@ index dd66f0b..2235cd5 100644
 From c743a672a7b9b80f3a1765e5a5e0e9093a44a0dd Mon Sep 17 00:00:00 2001
 From: Pawit Pornkitprasan <p.pawit@gmail.com>
 Date: Mon, 16 Dec 2013 15:45:42 +0700
-Subject: [PATCH 4/4] sf: HAWAAI_HWC: fix rotation artifact
+Subject: [PATCH 4/4] sf: HAWAII_HWC: fix rotation artifact
 
 Change-Id: I1d9cd2a57ece5a55af318f00c7902994a77776fc
 ---
@@ -128,7 +128,7 @@ index 8583393..9688f54 100644
      ATRACE_CALL();
  
 +// Rotation artifact problems when useReadPixels is false
-+#ifdef HAWAAI_HWC
++#ifdef HAWAII_HWC
 +    useReadPixels = true;
 +#endif
 +

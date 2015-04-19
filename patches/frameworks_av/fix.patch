@@ -55,8 +55,8 @@ index fa4643f..02c45b5 100644
      if (meta->findInt32(kKeyMaxInputSize, &maxInputSize)) {
          setMinBufferSize(kPortIndexInput, (OMX_U32)maxInputSize);
      }
-+// HAWAAI's OMX fail to set a reasonable default size from width and height
-+#ifdef HAWAAI_HWC
++// HAWAII's OMX fail to set a reasonable default size from width and height
++#ifdef HAWAII_HWC
 +    else {
 +        int32_t width;
 +        int32_t height;
@@ -91,8 +91,8 @@ index 02c45b5..5d48f39 100644
 +++ b/media/libstagefright/OMXCodec.cpp
 @@ -803,7 +803,7 @@ status_t OMXCodec::configureCodec(const sp<MetaData> &meta) {
      }
- // HAWAAI's OMX fail to set a reasonable default size from width and height
- #ifdef HAWAAI_HWC
+ // HAWAII's OMX fail to set a reasonable default size from width and height
+ #ifdef HAWAII_HWC
 -    else {
 +    else if (!strncmp(mComponentName, "OMX.BRCM.vc4.decoder.", 21)) {
          int32_t width;
